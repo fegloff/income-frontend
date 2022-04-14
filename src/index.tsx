@@ -1,16 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
+import { Web3ReactProvider } from '@web3-react/core';
+import { Web3Provider } from '@ethersproject/providers';
+import { MetaMaskProvider } from './hooks/metamask/metamask';
 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+
+function getLibrary(provider: any, connector: any) {
+  return new Web3Provider(provider);
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Web3ReactProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
