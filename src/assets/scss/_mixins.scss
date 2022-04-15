@@ -15,7 +15,7 @@
 }
 
 @mixin image-background($image, $bg-size: "unset") {
-  background-image: url("../assets/images/#{$image}");
+  background-image: url("../images/#{$image}");
   background-size: #{$bg-size};
   background-repeat: no-repeat;
 }

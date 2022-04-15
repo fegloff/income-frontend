@@ -8,9 +8,7 @@
 
       &__logo {
         &-type {
-          background-image: url("../../assets/images/type.svg");
-          background-size: contain;
-          // @include image-background($image: "type.svg", $bg-size: "contain");
+          @include image-background($image: "type.svg", $bg-size: "contain");
         }
       }
 
@@ -26,9 +24,7 @@
 
       &__logo {
         &-type {
-          background-image: url("../../assets/images/type-light.svg");
-          background-size: contain;
-          //@include image-background($image: "type-light.svg", $bg-size: "contain");
+          @include image-background($image: "type-light.svg", $bg-size: "contain");
         }
       }
 
@@ -54,9 +50,7 @@
     &-emblem {
       width: 15%;
       height: 1.8em;
-      background-image: url("../../assets/images/emblem.svg");
-      background-size: cover;
-      //@include image-background($image: "emblem.svg", $bg-size: "cover");
+      @include image-background($image: "emblem.svg", $bg-size: "cover");
     }
 
     &-type {

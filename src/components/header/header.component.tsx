@@ -28,12 +28,7 @@ const Header: React.FC = () => {
     }
 
   }
-
-  useEffect(()=>{
-    console.log("useefect");
-    console.log(active,chainId,error,account);
-  },[active,chainId,account]);
-  
+ 
   return (
     <header className="header">
       <div className="container">

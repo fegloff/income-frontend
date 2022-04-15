@@ -8,7 +8,6 @@ module.exports = {
     path: path.join(__dirname, "/dist"),
     filename: "bundle.js",
   },
-  devtool: "inline-source-map",
   devServer: {
     static: "./dist",
   },
@@ -26,7 +25,11 @@ module.exports = {
         enforce: "pre",
         test: /\.js$/,
         loader: "source-map-loader"
-      }
+      },
+      {
+        test: /\.s?css$/,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
   ignoreWarnings: [/Failed to parse source map/],
