@@ -1,7 +1,7 @@
 import React from "react";
 import './footer.styles.scss';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <p className="footer__legal">

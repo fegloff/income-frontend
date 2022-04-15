@@ -6,7 +6,7 @@ type depositProps = {
   ratioMedium: number
 }
 
-const Deposit = (props: depositProps) => {
+const Deposit: React.FC<depositProps> = (props) => {
   return (
     <div className="deposit">
     <div className="deposit__title">{props.title}</div>

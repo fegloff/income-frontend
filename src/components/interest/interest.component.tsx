@@ -6,7 +6,7 @@ type interestProps = {
   date: string
 }
 
-const Interest = (props: interestProps) => {
+const Interest: React.FC<interestProps> = (props) => {
   return (
     <div className="interest">
       <div className="interest__title">{props.title}</div>

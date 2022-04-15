@@ -5,19 +5,28 @@ import { Web3Provider } from '@ethersproject/providers';
 import { useEffect } from "react";
 import Navigation from "./navigation.component"; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMoon } from "@fortawesome/free-solid-svg-icons";
+import {  } from '@fortawesome/react-fontawesome';
 import './header.styles.scss';
 
-const Header = () => {
+const Header: React.FC = () => {
   
-  const { connector, error, activate, deactivate, active, chainId, account } = useWeb3React<Web3Provider>();
+  const { error, activate, deactivate, active, chainId, account } = useWeb3React<Web3Provider>();
   
-  const connect = async () => {
+  const handleClick = async () => {
+    console.log("handleClick");
     try {
-      await activate(injected);
-      console.log("CONNECT",active,chainId,error,account);
+      if (!active) {
+        await activate(injected);
+        console.log("CONNECT",active,chainId,error,account);
+      } else {
+        await deactivate();
+        console.log("DISCONNECT");
+      } 
     } catch(e) {
       console.log(e);
     }
+
   }
 
   useEffect(()=>{
@@ -37,11 +46,11 @@ const Header = () => {
           <button className="header__actions--theme button">
             <FontAwesomeIcon
               className="icon header__icon"
-              icon={["fas", "moon"]}
+              icon={faMoon}
               size="xs"
             />
           </button>
-          <button className="header__actions--wallet button">Connect Wallet</button>
+          <button className="header__actions--wallet button" onClick={handleClick}>{active ? account?.substring(0,10) : "Connect Wallet"}</button>
         </div>
       </div>
     </header>

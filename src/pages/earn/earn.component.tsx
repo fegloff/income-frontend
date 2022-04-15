@@ -4,7 +4,7 @@ import Interest from "../../components/interest/interest.component";
 import Deposit from "../../components/deposit/deposit.component";
 import Balance from "../../components/balance/balance.component";
 
-const EarnPage = () => {
+const EarnPage: React.FC = () => {
   const { active, chainId, account } = useWeb3React();
   console.log(active,chainId,account);
 

@@ -6,7 +6,7 @@ type balanceProps = {
   ubTotal: number
 }
 
-const Balance = (props: balanceProps) => {
+const Balance: React.FC<balanceProps> = (props) => {
   return (
     <div className="balance">
       <div className="balance__row">
