@@ -2,7 +2,6 @@ import React from "react";
 import { useWeb3React } from '@web3-react/core'
 import { injected } from "../../web3/connectors";
 import { Web3Provider } from '@ethersproject/providers';
-import { useEffect } from "react";
 import Navigation from "./navigation.component"; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
@@ -11,7 +10,8 @@ import './header.styles.scss';
 
 const Header: React.FC = () => {
   
-  const { error, activate, deactivate, active, chainId, account } = useWeb3React<Web3Provider>();
+  const { error, activate, deactivate, active, chainId, account, library } = useWeb3React<Web3Provider>();
+  console.log(useWeb3React());
   
   const handleClick = async () => {
     console.log("handleClick");
@@ -19,6 +19,7 @@ const Header: React.FC = () => {
       if (!active) {
         await activate(injected);
         console.log("CONNECT",active,chainId,error,account);
+        console.log(library);
       } else {
         await deactivate();
         console.log("DISCONNECT");

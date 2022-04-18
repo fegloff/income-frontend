@@ -10,7 +10,7 @@ const EarnPage: React.FC = () => {
 
   return (
     <div className="main">
-      <Interest title="Interest APY" ratio={19.57} date="April 7 2022" />
+      <Interest />
       <Deposit title="Your Total Deposit" ratioSmall={0.0} ratioMedium={0.0} />
       <Balance oneTotal={0.0} ubTotal={0.0} />
 

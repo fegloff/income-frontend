@@ -1,17 +1,23 @@
+import { useState } from "react";
+import { useEffect } from "react";
+import { getApy } from "web3/anchor/anchor";
 import "./interest.styles.scss";
 
-type interestProps = {
-  title: string,
-  ratio: number,
-  date: string
-}
+const Interest: React.FC = () => {
+  const [apy, setApy ] = useState("");
+  const date = new Date();
 
-const Interest: React.FC<interestProps> = (props) => {
+  useEffect(()=>{
+    getApy().then((result) => {
+      setApy(result || "");     
+    })
+  })
+  
   return (
     <div className="interest">
-      <div className="interest__title">{props.title}</div>
-      <div className="interest__ratio">{props.ratio}%</div>
-      <div className="interest__date">{props.date}</div>
+      <div className="interest__title">Interest APY</div>
+      <div className="interest__ratio">{apy}%</div>
+      <div className="interest__date">{date.toDateString()}</div>
     </div>
   );
 };
