@@ -6,12 +6,18 @@ import "./interest.styles.scss";
 const Interest: React.FC = () => {
   const [apy, setApy ] = useState("");
   const date = new Date();
+  const cachedApy = sessionStorage.getItem("apy"); 
 
   useEffect(()=>{
-    getApy().then((result) => {
-      setApy(result || "");     
-    })
-  })
+    if (!cachedApy) {
+      getApy().then((result) => {
+        setApy(result || "");
+        sessionStorage.setItem("apy",result || ""); 
+      })
+    } else {
+      setApy(cachedApy);
+    }
+  },[])
   
   return (
     <div className="interest">

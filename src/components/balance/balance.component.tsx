@@ -13,28 +13,21 @@ const Balance: React.FC<balanceProps> = (props) => {
   const [austBalance, setAustBalance] = useState("0.00");
   const [oneBalance, setOneBalance] = useState("0.00");
   const wallet = useWallet();
-
- 
-  
-  useEffect(()=>{
-    console.log("Balance useEffect");
-    if (wallet.isConnected()) {
-      getTokenBalance(wallet.account,AUST_CONTRACT,setAustBalance);
-    }
-  },[wallet, austBalance]);
+  let isSubscribed = React.useRef(true);
 
   useEffect(()=>{
-    console.log("Balance useEffect");
-    
-    const getOneBalance = () => {
+    const getOneBalance = async () => {
       const balance = parseFromWei(wallet.balance);
       setOneBalance(balance);
     }
 
-    if (wallet.isConnected()) {
+    if (wallet.status === 'connected' && isSubscribed) {
       getOneBalance();
+      getTokenBalance(wallet.account,AUST_CONTRACT,setAustBalance);
+      isSubscribed.current = false;      
     }
-  },[wallet, oneBalance]);
+
+  },[wallet.status, wallet.account, wallet.balance]);
 
   return (
     <div className="balance">
