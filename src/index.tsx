@@ -1,25 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
-import { Web3ReactProvider } from '@web3-react/core';
-import { Web3Provider } from '@ethersproject/providers';
+import { UseWalletProvider } from 'use-wallet';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.scss';
 
 
-function getLibrary(provider: any, connector: any) {
-  return new Web3Provider(provider);
-}
-
 ReactDOM.render(
   <React.StrictMode>
-    <Web3ReactProvider getLibrary={getLibrary}>
+    <UseWalletProvider autoConnect connectors={{
+      injected: {
+        chainId: [1666600000]
+      }
+    }}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </Web3ReactProvider>
+    </UseWalletProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

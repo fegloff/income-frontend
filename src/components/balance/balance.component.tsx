@@ -1,6 +1,6 @@
-import React from "react";
-import { useWeb3React } from "@web3-react/core";
-import { Web3Provider } from '@ethersproject/providers';
+import React, { useState, useEffect } from "react";
+import { useWallet } from "use-wallet";
+import { getTokenBalance, parseFromWei, AUST_CONTRACT } from "web3/web3.utils";
 import "./balance.styles.scss";
 
 type balanceProps = {
@@ -10,19 +10,41 @@ type balanceProps = {
 }
 
 const Balance: React.FC<balanceProps> = (props) => {
-  const { error, activate, deactivate, active, chainId, account } = useWeb3React<Web3Provider>();
-  console.log(account);
-  console.log(useWeb3React<Web3Provider>());
+  const [austBalance, setAustBalance] = useState("0.00");
+  const [oneBalance, setOneBalance] = useState("0.00");
+  const wallet = useWallet();
+
+ 
+  
+  useEffect(()=>{
+    console.log("Balance useEffect");
+    if (wallet.isConnected()) {
+      getTokenBalance(wallet.account,AUST_CONTRACT,setAustBalance);
+    }
+  },[wallet, austBalance]);
+
+  useEffect(()=>{
+    console.log("Balance useEffect");
+    
+    const getOneBalance = () => {
+      const balance = parseFromWei(wallet.balance);
+      setOneBalance(balance);
+    }
+
+    if (wallet.isConnected()) {
+      getOneBalance();
+    }
+  },[wallet, oneBalance]);
+
   return (
     <div className="balance">
       <div className="balance__row">
         <div className="balance__title">ONE Available</div>
-        <div className="balance__total">{props.oneTotal.toFixed(2)}</div>
-        <div className="balance__converted">= ${props.oneTotal.toFixed(2)}</div>
+        <div className="balance__total">{oneBalance}</div>
       </div>
       <div className="balance__row">
-        <div className="balance__title">ubONE Balance</div>
-        <div className="balance__total">{props.ubTotal.toFixed(2)}</div>
+        <div className="balance__title">aUST Balance</div>
+        <div className="balance__total">{austBalance}</div>
       </div>
     </div>
   );
