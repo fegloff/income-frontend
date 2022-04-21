@@ -7,7 +7,7 @@ import Footer from "./components/footer/footer.component";
 import "./App.scss";
 
 const App: React.FC = () => {
-  let [isActive, setActive] = useState<boolean>(false);
+  const [isActive, setActive] = useState<boolean>(false);
 
   const updateState = (state: boolean): void => {
     setActive(state);   
