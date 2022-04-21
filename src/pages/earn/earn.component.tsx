@@ -11,11 +11,9 @@ const EarnPage: React.FC = () => {
   return (
     <div className="main">
       <Interest />
-      <Deposit title="Your Total Deposit" ratioSmall={0.0} ratioMedium={0.0} />
-      <Balance oneTotal={0.0} ubTotal={0.0} />
-
+      <Deposit />
+      <Balance />
     </div>
-    
   )
 }
 

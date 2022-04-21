@@ -3,13 +3,7 @@ import { useWallet } from "use-wallet";
 import { getTokenBalance, parseFromWei, AUST_CONTRACT } from "web3/web3.utils";
 import "./balance.styles.scss";
 
-type balanceProps = {
-  title?: string,
-  oneTotal: number,
-  ubTotal: number
-}
-
-const Balance: React.FC<balanceProps> = (props) => {
+const Balance: React.FC = () => {
   const [austBalance, setAustBalance] = useState("0.00");
   const [oneBalance, setOneBalance] = useState("0.00");
   const wallet = useWallet();
@@ -25,6 +19,12 @@ const Balance: React.FC<balanceProps> = (props) => {
       getOneBalance();
       getTokenBalance(wallet.account,AUST_CONTRACT,setAustBalance);
       isSubscribed.current = false;      
+    }
+
+    if (wallet.status !== 'connected') {
+      console.log("USE EFFECT");
+      setOneBalance("0.00");
+      setAustBalance("0.00");
     }
 
   },[wallet.status, wallet.account, wallet.balance]);

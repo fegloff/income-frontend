@@ -117,4 +117,4 @@ const abi = [
 ]
 
 // @ts-ignore
-export default new web3.eth.Contract(abi, address);
+export default new Web3Client.eth.Contract(abi, address);
