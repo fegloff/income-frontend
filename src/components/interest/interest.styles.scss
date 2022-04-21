@@ -1,36 +1,34 @@
 @import "../../assets/scss/styles.scss";
 
 /* Themes images and color properties */
-.root {
-  &--light {
-    .interest {
-      &__title {
-        color: $dark-gray;
-      }
-
-      &__ratio {
-        color: $blue;
-      }
-
-      &__date {
-        color: $black;
-      }
+.light {
+  .interest {
+    &__title {
+      color: $dark-gray;
     }
-  }
 
-  &--dark {
-    .interest {
-      &__title {
-        color: $light-gray;
-      }
+    &__ratio {
+      color: $blue;
+    }
 
-      &__ratio {
-        color: $white;
-      }
+    &__date {
+      color: $black;
+    }
+  }  
+}
 
-      &__date {
-        color: $white;
-      }
+.dark {
+  .interest {
+    &__title {
+      color: $light-gray;
+    }
+
+    &__ratio {
+      color: $white;
+    }
+
+    &__date {
+      color: $white;
     }
   }
 }

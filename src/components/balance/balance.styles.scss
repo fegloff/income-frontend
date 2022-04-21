@@ -1,30 +1,26 @@
 @import "../../assets/scss/styles.scss";
 
 /* Themes images and color properties */
-.root {
-  &--light {
-    .balance {
-      background-color: white;
+.light {
+  .balance {
+    background-color: white;
 
-      &__row {
-        border-color: rgba($color: $black, $alpha: 0.1);
-      }
-
-     
+    &__row {
+      border-color: rgba($color: $black, $alpha: 0.1);
     }
   }
+}
 
-  &--dark {
-    .balance {
-      background-color: rgba($color: $white, $alpha: 0.05);
+.dark {
+  .balance {
+    background-color: rgba($color: $white, $alpha: 0.05);
 
-      &__row {
-        border-color: rgba($color: $white, $alpha: 0.1);
-      }
+    &__row {
+      border-color: rgba($color: $white, $alpha: 0.1);
+    }
 
-      &__total {
-        color: $white;
-      }
+    &__total {
+      color: $white;
     }
   }
 }
@@ -71,4 +67,3 @@
     text-align: right;
   }
 }
-
