@@ -1,4 +1,4 @@
-import web3 from './web3';
+import { Web3Client } from "web3/web3.utils";
 
 const address = process.env.REACT_APP_CONTRACT_ADDRESS;
 
