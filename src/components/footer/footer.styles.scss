@@ -1,20 +1,18 @@
 @import "../../assets/scss/styles.scss";
 
 /* Themes images and color properties */
-.root {
-  &--light {
-    .footer {
-      &__legal {
-        color: $dark-gray;
-      }
+.light {
+  .footer {
+    &__legal {
+      color: $dark-gray;
     }
-  }
+  }  
+}
 
-  &--dark {
-    .footer {
-      &__legal {
-        color: $light-gray;
-      }
+.dark {
+  .footer {
+    &__legal {
+      color: $light-gray;
     }
   }
 }
@@ -23,7 +21,7 @@
 .footer {
   width: 100%;
   margin-top: 1.5em;
-  
+
   &__legal {
     font-size: 0.75rem;
     text-align: center;

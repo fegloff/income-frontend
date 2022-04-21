@@ -1,20 +1,18 @@
 @import "../../assets/scss/styles.scss";
 
 /* Themes images and color properties */
-.root {
-  &--light {
-    .navigation {
-      &__item {
-        color: $black;
-      }
+.light {
+  .navigation {
+    &__item {
+      color: $black;
     }
-  }
+  }  
+}
 
-  &--dark {
-    .navigation {
-      &__item {
-        color: $white;
-      }
+.dark {
+  .navigation {
+    &__item {
+      color: $white;
     }
   }
 }

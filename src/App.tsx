@@ -1,25 +1,30 @@
-import React from 'react';
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import './App.scss';
+import Header from "./components/header/header.component";
+import EarnPage from "./pages/earn/earn.component";
+import DashboardPage from "./pages/dashboard/dashboard.component";
+import Footer from "./components/footer/footer.component";
+import "./App.scss";
 
-import Header from './components/header/header.component';
-import EarnPage from './pages/earn/earn.component';
-import DashboardPage from './pages/dashboard/dashboard.component';
-import Footer from './components/footer/footer.component';
+const App: React.FC = () => {
+  let [isActive, setActive] = useState<boolean>(false);
 
-function App() {
+  const updateState = (state: boolean): void => {
+    setActive(state);   
+  };
+
   return (
-    <div>
-      <Header />
+    <div id="app" className={!isActive ? "light" : "dark"}>
+      <Header state={isActive} updateState={updateState} />
       <div className="container">
         <Routes>
-          <Route path="/" element={<EarnPage />}/>
-          <Route path="/dashboard" element={<DashboardPage />}/>
+          <Route path="/" element={<EarnPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
         </Routes>
       </div>
-      <Footer/>
-    </div>   
+      <Footer />
+    </div>
   );
-}
+};
 
 export default App;
