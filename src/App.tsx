@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { TypedUseSelectorHook, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from 'redux/root-reducer';
 
 import Header from './components/header/header.component';
@@ -26,9 +26,6 @@ function App() {
         toast.error(toastMessage.message);
       }
     }
-    
-    console.log(toastMessage);
-    console.log("JAJAJ");
   },[toastMessage]);
 
   return (

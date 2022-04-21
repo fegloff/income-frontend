@@ -6,7 +6,7 @@ import { ToastMessageTypes } from "redux/toast/toast.types";
 import Navigation from "./navigation.component"; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
-
+import { faSun } from "@fortawesome/free-solid-svg-icons";
 import "./header.styles.scss";
 
 interface IHeaderProps {
@@ -15,18 +15,19 @@ interface IHeaderProps {
 }
 
 const Header: React.FC<IHeaderProps> = ({ state, updateState }) => {
+  
   const [buttonisActive, buttonsetActive] = useState<boolean>();
-
-  useEffect(() => {
-    buttonsetActive(state);
-  }, [state]);
 
   const wallet = useWallet();
   const activate = (connector: string) => wallet.connect(connector);
   const dispatch = useDispatch();
   const networkName = process.env.REACT_APP_NETWORK_NAME;
+
+  useEffect(() => {
+    buttonsetActive(state);
+  }, [state]);
+
   const handleClick = async () => {
-    console.log("handleClick");
     try {
       if (!wallet.isConnected()) {
         await activate("injected");
@@ -74,11 +75,11 @@ const Header: React.FC<IHeaderProps> = ({ state, updateState }) => {
         <div className="header__actions">
           <button
             className="header__actions--theme button"
-            onClick={() => updateState(buttonisActive === true ? false : true)}
+            onClick={() => updateState(!buttonisActive)} // === true ? false : true)}
           >
             <FontAwesomeIcon
               className="icon header__icon"
-              icon={faMoon}
+              icon={ !buttonisActive ? (faMoon) : (faSun)}
               size="xs"
             />
           </button>
