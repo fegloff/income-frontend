@@ -1,4 +1,5 @@
 import { MnemonicKey, AnchorEarn, CHAINS, NETWORKS, DENOMS, MarketOutput, MarketEntry } from '@anchor-protocol/anchor-earn'
+import { MarketAPI } from '@terra-money/terra.js';
 
 export async function getApy() {
   try {
