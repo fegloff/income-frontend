@@ -1,13 +1,7 @@
 import Web3 from "web3";
 
-window.ethereum.enable();
-
-//const web3 = new Web3(window.web3.currentProvider);
-
-export const AUST_CONTRACT = process.env.REACT_APP_AUST_CONTRACT_ADDRESS;
-
-export const Web3Client = new Web3(window.web3.currentProvider); 
-
+export const AUST_CONTRACT = "0x4D9d9653367FD731Df8412C74aDA3E1c9694124a";
+const Web3Client = new Web3(window.ethereum); 
 const ABI = [ 
   {
     constant: true,
