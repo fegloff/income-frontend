@@ -6,7 +6,6 @@ import { ToastMessageTypes } from "redux/toast/toast.types";
 import Navigation from "./navigation.component"; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
-import { faSun } from "@fortawesome/free-solid-svg-icons";
 import "./header.styles.scss";
 
 interface IHeaderProps {
@@ -75,11 +74,11 @@ const Header: React.FC<IHeaderProps> = ({ state, updateState }) => {
         <div className="header__actions">
           <button
             className="header__actions--theme button"
-            onClick={() => updateState(!buttonisActive)} // === true ? false : true)}
+            onClick={() => updateState(!buttonisActive)}
           >
             <FontAwesomeIcon
               className="icon header__icon"
-              icon={ !buttonisActive ? (faMoon) : (faSun)}
+              icon={faMoon}//{ !buttonisActive ? (faMoon) : (faSun)}
               size="xs"
             />
           </button>
