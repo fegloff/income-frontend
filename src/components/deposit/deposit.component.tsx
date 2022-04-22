@@ -24,7 +24,7 @@ const Deposit: React.FC= () => {
       <button className="deposit__button button" onClick={handleDeposit}>Deposit</button>
       <button className="deposit__button button">Withdraw</button>
     </div>
-  </div>
+    </div>
   );
 };
 
