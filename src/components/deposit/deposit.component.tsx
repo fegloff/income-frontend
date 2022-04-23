@@ -4,7 +4,6 @@ import { incomeDeposit } from "web3/web3.utils";
 import "./deposit.styles.scss";
 
 const Deposit: React.FC= () => {
-  const [title, setTitle] = useState('Your Total Deposit');
   const [amount, setAmount] = useState(0.0);
   const wallet = useWallet();
 
@@ -16,14 +15,19 @@ const Deposit: React.FC= () => {
 
   return (
     <div className="deposit">
-    <div className="deposit__title">{title}</div>
-    <div className="deposit__total--small">{amount.toFixed(2)} ONE</div>
-    <div className="deposit__total--medium">{amount.toFixed(2)}</div>
-    <span className="deposit__total--warning">Not Enough!</span>
-    <div className="deposit__cta">
-      <button className="deposit__button button" onClick={handleDeposit}>Deposit</button>
-      <button className="deposit__button button">Withdraw</button>
-    </div>
+      <div className="deposit__title">Enter Amount</div>
+      <p></p>
+      <input
+        className="deposit__input"
+        type="number"
+        step="0.01"
+        placeholder="0.00"
+      ></input>
+      <span className="deposit__total--warning">Not Enough!</span>
+      <div className="deposit__cta">
+        <button className="deposit__button button" onClick={handleDeposit}>Deposit</button>
+        <button className="deposit__button button">Withdraw</button>
+      </div>
     </div>
   );
 };

@@ -32,8 +32,8 @@ const Balance: React.FC = () => {
   return (
     <div className="balance">
       <div className="balance__row">
-        <div className="balance__title">ONE Available</div>
-        <div className="balance__total">{oneBalance}</div>
+        <div className="balance__title">Total Deposits</div>
+        <div className="balance__total">{oneBalance} ONE</div>
       </div>
       <div className="balance__row">
         <div className="balance__title">aUST Balance</div>

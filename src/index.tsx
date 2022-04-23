@@ -9,6 +9,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.scss';
 
+const chainID = process.env.REACT_APP_CHAIN_ID?.split(',');
+console.log('CHAIN IDD **********',chainID,'XXXXXXX');
 
 ReactDOM.render(
   <React.StrictMode>
