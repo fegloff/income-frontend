@@ -20,12 +20,21 @@ export const getTokenBalance = async (walletAddress, tokenAddress, setBalance) =
   setBalance(parseFromWei(result));
 }
 
-export const parseFromWei = (wei) => {
-  return parseFloat(Web3Client.utils.fromWei(wei)).toFixed(2); 
-}
-
 export const incomeDeposit = async (walletAddress, amount) => {
   const contract = getContract(incomeABI, incomeAddress);
   const result = await contract.methods.echo().send({ value: amount, from: walletAddress});
   console.log("incomeDeposit",result);
+}
+
+export const parseFromWei = (wei) => {
+  return parseFloat(Web3Client.utils.fromWei(wei)).toFixed(2); 
+}
+
+export const truncateAddressString = (address, num = 12) => {
+  if (!address) {
+    return '';
+  }
+  const first = address.slice(0, num);
+  const last = address.slice(-num);
+  return `${first}...${last}`;
 }

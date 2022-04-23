@@ -7,9 +7,9 @@ const Balance: React.FC = () => {
   const [austBalance, setAustBalance] = useState("0.00");
   const [oneBalance, setOneBalance] = useState("0.00");
   const wallet = useWallet();
-  let isSubscribed = React.useRef(true);
+  // let isSubscribed = React.useRef(true);
 
-  useEffect(()=>{
+  /*useEffect(()=>{
     const getOneBalance = async () => {
       const balance = parseFromWei(wallet.balance);
       setOneBalance(balance);
@@ -22,12 +22,11 @@ const Balance: React.FC = () => {
     }
 
     if (wallet.status !== 'connected') {
-      console.log("USE EFFECT");
       setOneBalance("0.00");
       setAustBalance("0.00");
     }
 
-  },[wallet.status, wallet.account, wallet.balance]);
+  },[wallet.status, wallet.account, wallet.balance]);*/
 
   return (
     <div className="balance">
@@ -35,10 +34,10 @@ const Balance: React.FC = () => {
         <div className="balance__title">Total Deposits</div>
         <div className="balance__total">{oneBalance} ONE</div>
       </div>
-      <div className="balance__row">
+      {/*<div className="balance__row">
         <div className="balance__title">aUST Balance</div>
         <div className="balance__total">{austBalance}</div>
-      </div>
+      </div>*/}
     </div>
   );
 };

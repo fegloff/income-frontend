@@ -7,6 +7,7 @@ import Navigation from "./navigation.component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
 import "./header.styles.scss";
+import { parseFromWei, truncateAddressString } from "web3/web3.utils";
 
 interface IHeaderProps {
   state: boolean;
@@ -14,7 +15,7 @@ interface IHeaderProps {
 }
 
 const Header: React.FC<IHeaderProps> = ({ state, updateState }) => {
-  
+  const [oneBalance, setOneBalance] = useState("0.00");
   const [buttonisActive, buttonsetActive] = useState<boolean>();
 
   const wallet = useWallet();
@@ -25,6 +26,23 @@ const Header: React.FC<IHeaderProps> = ({ state, updateState }) => {
   useEffect(() => {
     buttonsetActive(state);
   }, [state]);
+
+  useEffect(()=>{
+    const getOneBalance = async () => {
+      const balance = parseFromWei(wallet.balance);
+      setOneBalance(balance);
+    }
+
+    if (wallet.status === 'connected') {// && isSubscribed) {
+      getOneBalance();
+      //isSubscribed.current = false;      
+    }
+
+    if (wallet.status !== 'connected') {
+      setOneBalance("0.00");
+    }
+  },[wallet.status, wallet.balance])
+
 
   const handleClick = async () => {
     try {
@@ -87,7 +105,7 @@ const Header: React.FC<IHeaderProps> = ({ state, updateState }) => {
             onClick={handleClick}
           >
             {wallet.isConnected()
-              ? wallet.account?.substring(0, 10)
+              ? `${truncateAddressString(wallet.account,4)} | ${oneBalance} ONE` //?.substring(0, 10)
               : "Connect Wallet"}
           </button>
         </div>
