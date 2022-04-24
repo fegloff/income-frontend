@@ -11,14 +11,14 @@ const Navigation: React.FC = () => {
             Earn
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink
             className="navigation__item"
             to="/dashboard"
           >
             Dashboard
           </NavLink>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

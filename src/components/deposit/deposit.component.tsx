@@ -1,16 +1,51 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useWallet } from "use-wallet";
 import { incomeDeposit } from "web3/web3.utils";
 import "./deposit.styles.scss";
 
 const Deposit: React.FC= () => {
-  const [amount, setAmount] = useState(0.0);
+  const [amount, setAmount] = useState('');
   const [validationError, setValidationError] = useState('');
+  const [ buttonDisable, setButtonDisable ] = useState(false);
   const wallet = useWallet();
 
-  const handleDeposit = () => {
-    if (wallet.isConnected()) {
-      incomeDeposit(wallet.account,100000000000000);
+  const handleDeposit = async () => {
+    setValidationError('');
+    try {
+      if (wallet.isConnected()) {
+        if (amount) {
+          setButtonDisable(true)
+          await incomeDeposit(wallet,amount,setValidationError);
+          setButtonDisable(false);  
+        } else {
+          setValidationError('Please enter the Amount');
+        }
+      }
+    } catch(e) {
+      setButtonDisable(false);  
+      console.log("catched",e);
+      setValidationError('');
+      setAmount('');
+    }
+  }
+  
+  const handleWithdraw = async () => {
+    setValidationError('');
+    try {
+      if (wallet.isConnected()) {
+        if (amount) {
+          setButtonDisable(true)
+          await incomeDeposit(wallet,amount,setValidationError);
+          setButtonDisable(false);  
+        } else {
+          setValidationError('Please enter the Amount');
+        }
+      }
+    } catch(e) {
+      setButtonDisable(false);  
+      console.log("catched",e);
+      setValidationError('');
+      setAmount('');
     }
   }
 
@@ -21,13 +56,15 @@ const Deposit: React.FC= () => {
       <input
         className="deposit__input"
         type="number"
-        step="0.01"
-        placeholder="0.00"
+        step="1"
+        placeholder="0"
+        value={amount}
+        onChange={e => setAmount(e.target.value)}    
       ></input>
       <span className="deposit__total--warning">{validationError}</span>
       <div className="deposit__cta">
-        <button className="deposit__button button" onClick={handleDeposit}>Deposit</button>
-        <button className="deposit__button button">Withdraw</button>
+        <button className="deposit__button button" onClick={handleDeposit} disabled={buttonDisable}>Deposit</button>
+        <button className="deposit__button button" onClick={handleWithdraw} disabled={buttonDisable}>Withdraw</button>
       </div>
     </div>
   );

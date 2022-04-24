@@ -9,15 +9,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.scss';
 
-const chainID = process.env.REACT_APP_CHAIN_ID?.split(',');
-console.log('CHAIN IDD **********',chainID,'XXXXXXX');
+const chainID = process.env.REACT_APP_CHAIN_ID?.split(',').map(el => {
+  let n = Number(el);
+  return isNaN(n) ? el : n;
+});
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <UseWalletProvider autoConnect connectors={{
         injected: {
-          chainId: [1666600000]
+          chainId: chainID
         }
       }}>
         <BrowserRouter>

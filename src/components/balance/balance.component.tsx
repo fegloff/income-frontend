@@ -1,43 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { useWallet } from "use-wallet";
-import { getTokenBalance, parseFromWei, AUST_CONTRACT } from "web3/web3.utils";
+import { getTokenBalance, AUST_CONTRACT } from "web3/web3.utils";
 import "./balance.styles.scss";
 
 const Balance: React.FC = () => {
   const [austBalance, setAustBalance] = useState("0.00");
-  const [oneBalance, setOneBalance] = useState("0.00");
   const wallet = useWallet();
-  // let isSubscribed = React.useRef(true);
+  let isSubscribed = React.useRef(true);
 
-  /*useEffect(()=>{
-    const getOneBalance = async () => {
-      const balance = parseFromWei(wallet.balance);
-      setOneBalance(balance);
-    }
-
+  useEffect(()=>{
+    
     if (wallet.status === 'connected' && isSubscribed) {
-      getOneBalance();
       getTokenBalance(wallet.account,AUST_CONTRACT,setAustBalance);
       isSubscribed.current = false;      
     }
 
     if (wallet.status !== 'connected') {
-      setOneBalance("0.00");
       setAustBalance("0.00");
     }
 
-  },[wallet.status, wallet.account, wallet.balance]);*/
+  },[wallet.status, wallet.account, wallet.balance]);
 
   return (
     <div className="balance">
       <div className="balance__row">
         <div className="balance__title">Total Deposits</div>
-        <div className="balance__total">{oneBalance} ONE</div>
+        <div className="balance__total">{austBalance} aUST</div>
       </div>
-      {/*<div className="balance__row">
-        <div className="balance__title">aUST Balance</div>
-        <div className="balance__total">{austBalance}</div>
-      </div>*/}
     </div>
   );
 };

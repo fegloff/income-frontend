@@ -2,6 +2,7 @@ import Web3 from "web3";
 
 import tokensABI from './contracts/tokens-abi';
 import incomeABI from './contracts/income-abi';
+import { faCommentsDollar } from "@fortawesome/free-solid-svg-icons";
 
 window.ethereum.enable();
 
@@ -20,14 +21,31 @@ export const getTokenBalance = async (walletAddress, tokenAddress, setBalance) =
   setBalance(parseFromWei(result));
 }
 
-export const incomeDeposit = async (walletAddress, amount) => {
-  const contract = getContract(incomeABI, incomeAddress);
-  const result = await contract.methods.echo().send({ value: amount, from: walletAddress});
-  console.log("incomeDeposit",result);
+export const incomeDeposit = async (wallet, amount, setValidationError) => {
+  try {
+    const amountWei = parseToWei(amount);
+    if (parseInt(wallet.balance) > parseInt(amountWei)) {
+      const contract = getContract(incomeABI, incomeAddress);
+      const result = await contract.methods.deposit().send({ value: amountWei, from: wallet.account});
+      return result; 
+    } else {
+      setValidationError('Not enough funds');
+      return null;
+    }
+  } catch(e) {
+    console.log(e)
+    throw (e); //'Transaction cancel');
+  } 
+
 }
 
 export const parseFromWei = (wei) => {
   return parseFloat(Web3Client.utils.fromWei(wei)).toFixed(2); 
+}
+
+export const parseToWei = (amount) => {
+  return Web3Client.utils.toWei(amount); 
+
 }
 
 export const truncateAddressString = (address, num = 12) => {

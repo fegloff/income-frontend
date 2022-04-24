@@ -96,7 +96,7 @@ const Header: React.FC<IHeaderProps> = ({ state, updateState }) => {
           >
             <FontAwesomeIcon
               className="icon header__icon"
-              icon={faMoon}//{ !buttonisActive ? (faMoon) : (faSun)}
+              icon={faMoon}
               size="xs"
             />
           </button>

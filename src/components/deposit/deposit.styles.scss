@@ -97,5 +97,8 @@
     &:hover {
       background-color: $blue-hover;
     }
+    &:disabled {
+      background-color: $blue-hover;
+    }
   }
 }
