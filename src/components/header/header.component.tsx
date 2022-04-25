@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useWallet, ConnectionRejectedError } from "use-wallet";
+import { useWallet } from "use-wallet";
 import { useDispatch } from "react-redux";
 import { setToastMessage } from "redux/toast/toast.actions";
 import { ToastMessageTypes } from "redux/toast/toast.types";
@@ -105,7 +105,7 @@ const Header: React.FC<IHeaderProps> = ({ state, updateState }) => {
             onClick={handleClick}
           >
             {wallet.isConnected()
-              ? `${truncateAddressString(wallet.account,4)} | ${oneBalance} ONE` //?.substring(0, 10)
+              ? `${oneBalance} ONE` //`${truncateAddressString(wallet.account,4)} | ${oneBalance} ONE`
               : "Connect Wallet"}
           </button>
         </div>

@@ -7,7 +7,7 @@ import { faCommentsDollar } from "@fortawesome/free-solid-svg-icons";
 window.ethereum.enable();
 
 export const AUST_CONTRACT = process.env.REACT_APP_AUST_CONTRACT_ADDRESS;
-const incomeAddress = process.env.REACT_APP_INCOME_CONTRACT_ADDRESS;
+const incomeContractAddress = process.env.REACT_APP_INCOME_CONTRACT_ADDRESS;
 
 const Web3Client = new Web3(window.web3.currentProvider);
 
@@ -25,7 +25,27 @@ export const incomeDeposit = async (wallet, amount, setValidationError) => {
   try {
     const amountWei = parseToWei(amount);
     if (parseInt(wallet.balance) > parseInt(amountWei)) {
-      const contract = getContract(incomeABI, incomeAddress);
+      const contract = getContract(incomeABI,incomeContractAddress);
+      const result = await contract.methods.deposit().send({ value: amountWei, from: wallet.account});
+      return result; 
+    } else {
+      setValidationError('Not enough funds');
+      return null;
+    }
+  } catch(e) {
+    console.log(e);
+    //console.log('HASH',JSON.parse(e));
+    console.log('HASH2',e.receipt.transactionHash);
+    throw (e); //'Transaction cancel');
+  } 
+
+}
+
+export const incomeWithdraw = async (wallet, amount, setValidationError) => {
+  try {
+    const amountWei = parseToWei(amount);
+    if (parseInt(wallet.balance) > parseInt(amountWei)) {
+      const contract = getContract(incomeABI,incomeContractAddress);
       const result = await contract.methods.deposit().send({ value: amountWei, from: wallet.account});
       return result; 
     } else {
