@@ -14,7 +14,7 @@
     .button {
       border-color: $dark-gray;
     }
-  }  
+  }
 }
 
 .dark {
@@ -77,6 +77,10 @@
       padding: 0.6em 1em 0.35em 1em;
       font-weight: 700;
     }
+  }
+
+  &__icon {
+    padding-top: 0.29em;
   }
 
   .button {
